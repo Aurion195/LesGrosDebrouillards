@@ -9,7 +9,9 @@ import TSPModel_PtiDeb.TSPModel_PtiDeb;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JOptionPane;
@@ -33,6 +35,10 @@ public class Plateau extends javax.swing.JFrame implements Observer {
      */
     public Plateau() {
         initComponents();
+        panelLayout.removeAll();
+        panelLayout.add(panelAcceuilMain);
+        panelLayout.repaint();
+        panelLayout.revalidate();
     }
 
     /**
@@ -66,7 +72,109 @@ public class Plateau extends javax.swing.JFrame implements Observer {
         currentGraph = new javax.swing.JPanel();
         panelChargerMain = new javax.swing.JPanel();
         panelCharger = new javax.swing.JPanel();
-        jToggleButton7 = new javax.swing.JToggleButton();
+        buttonCharger = new javax.swing.JToggleButton();
+        x1x1 = new javax.swing.JRadioButton();
+        x2x1 = new javax.swing.JRadioButton();
+        x3x1 = new javax.swing.JRadioButton();
+        x6x1 = new javax.swing.JRadioButton();
+        x5x1 = new javax.swing.JRadioButton();
+        x4x1 = new javax.swing.JRadioButton();
+        x9x1 = new javax.swing.JRadioButton();
+        x8x1 = new javax.swing.JRadioButton();
+        x7x1 = new javax.swing.JRadioButton();
+        x9x2 = new javax.swing.JRadioButton();
+        x8x2 = new javax.swing.JRadioButton();
+        x7x2 = new javax.swing.JRadioButton();
+        x6x2 = new javax.swing.JRadioButton();
+        x5x2 = new javax.swing.JRadioButton();
+        x4x2 = new javax.swing.JRadioButton();
+        x3x2 = new javax.swing.JRadioButton();
+        x2x2 = new javax.swing.JRadioButton();
+        x1x2 = new javax.swing.JRadioButton();
+        x9x3 = new javax.swing.JRadioButton();
+        x8x3 = new javax.swing.JRadioButton();
+        x7x3 = new javax.swing.JRadioButton();
+        x6x3 = new javax.swing.JRadioButton();
+        x5x3 = new javax.swing.JRadioButton();
+        x4x3 = new javax.swing.JRadioButton();
+        x3x3 = new javax.swing.JRadioButton();
+        x2x3 = new javax.swing.JRadioButton();
+        x1x3 = new javax.swing.JRadioButton();
+        x9x4 = new javax.swing.JRadioButton();
+        x8x4 = new javax.swing.JRadioButton();
+        x7x4 = new javax.swing.JRadioButton();
+        x6x4 = new javax.swing.JRadioButton();
+        x5x4 = new javax.swing.JRadioButton();
+        x4x4 = new javax.swing.JRadioButton();
+        x3x4 = new javax.swing.JRadioButton();
+        x2x4 = new javax.swing.JRadioButton();
+        x1x4 = new javax.swing.JRadioButton();
+        x9x5 = new javax.swing.JRadioButton();
+        x8x5 = new javax.swing.JRadioButton();
+        x7x5 = new javax.swing.JRadioButton();
+        x6x5 = new javax.swing.JRadioButton();
+        x5x5 = new javax.swing.JRadioButton();
+        x4x5 = new javax.swing.JRadioButton();
+        x3x5 = new javax.swing.JRadioButton();
+        x2x5 = new javax.swing.JRadioButton();
+        x1x5 = new javax.swing.JRadioButton();
+        x9x6 = new javax.swing.JRadioButton();
+        x8x6 = new javax.swing.JRadioButton();
+        x7x6 = new javax.swing.JRadioButton();
+        x6x6 = new javax.swing.JRadioButton();
+        x5x6 = new javax.swing.JRadioButton();
+        x4x6 = new javax.swing.JRadioButton();
+        x3x6 = new javax.swing.JRadioButton();
+        x2x6 = new javax.swing.JRadioButton();
+        x1x6 = new javax.swing.JRadioButton();
+        x9x7 = new javax.swing.JRadioButton();
+        x8x7 = new javax.swing.JRadioButton();
+        x7x7 = new javax.swing.JRadioButton();
+        x6x7 = new javax.swing.JRadioButton();
+        x5x7 = new javax.swing.JRadioButton();
+        x4x7 = new javax.swing.JRadioButton();
+        x3x7 = new javax.swing.JRadioButton();
+        x2x7 = new javax.swing.JRadioButton();
+        x1x7 = new javax.swing.JRadioButton();
+        x9x8 = new javax.swing.JRadioButton();
+        x8x8 = new javax.swing.JRadioButton();
+        x7x8 = new javax.swing.JRadioButton();
+        x6x8 = new javax.swing.JRadioButton();
+        x5x8 = new javax.swing.JRadioButton();
+        x4x8 = new javax.swing.JRadioButton();
+        x3x8 = new javax.swing.JRadioButton();
+        x2x8 = new javax.swing.JRadioButton();
+        x1x8 = new javax.swing.JRadioButton();
+        x9x9 = new javax.swing.JRadioButton();
+        x8x9 = new javax.swing.JRadioButton();
+        x7x9 = new javax.swing.JRadioButton();
+        x6x9 = new javax.swing.JRadioButton();
+        x5x9 = new javax.swing.JRadioButton();
+        x4x9 = new javax.swing.JRadioButton();
+        x3x9 = new javax.swing.JRadioButton();
+        x2x9 = new javax.swing.JRadioButton();
+        x1x9 = new javax.swing.JRadioButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        buttonCreate = new javax.swing.JToggleButton();
+        textFieldName = new javax.swing.JTextField();
+        jLabel21 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,9 +183,9 @@ public class Plateau extends javax.swing.JFrame implements Observer {
         buttonPlay.setBorderPainted(false);
         buttonPlay.setContentAreaFilled(false);
         buttonPlay.setFocusPainted(false);
-        buttonPlay.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                buttonPlayMouseClicked(evt);
+        buttonPlay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onClickBandeauButtonPlay(evt);
             }
         });
 
@@ -85,14 +193,9 @@ public class Plateau extends javax.swing.JFrame implements Observer {
         buttonLoad.setBorder(null);
         buttonLoad.setBorderPainted(false);
         buttonLoad.setContentAreaFilled(false);
-        buttonLoad.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                buttonLoadMouseClicked(evt);
-            }
-        });
         buttonLoad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonLoadActionPerformed(evt);
+                onClickBandeauButtonLoad(evt);
             }
         });
 
@@ -100,9 +203,9 @@ public class Plateau extends javax.swing.JFrame implements Observer {
         buttonQuit.setBorder(null);
         buttonQuit.setBorderPainted(false);
         buttonQuit.setContentAreaFilled(false);
-        buttonQuit.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                buttonQuitMouseClicked(evt);
+        buttonQuit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onClickBandeauButtonQuit(evt);
             }
         });
 
@@ -211,18 +314,18 @@ public class Plateau extends javax.swing.JFrame implements Observer {
         buttonPlayPauseJeu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/pause.png"))); // NOI18N
         buttonPlayPauseJeu.setBorderPainted(false);
         buttonPlayPauseJeu.setContentAreaFilled(false);
-        buttonPlayPauseJeu.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                buttonPlayPauseJeuMouseClicked(evt);
+        buttonPlayPauseJeu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonPlayPauseJeuActionPerformed(evt);
             }
         });
 
         buttonAvanceRapideJeu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/plus.png"))); // NOI18N
         buttonAvanceRapideJeu.setBorderPainted(false);
         buttonAvanceRapideJeu.setContentAreaFilled(false);
-        buttonAvanceRapideJeu.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                buttonAvanceRapideJeuMouseClicked(evt);
+        buttonAvanceRapideJeu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAvanceRapideJeuActionPerformed(evt);
             }
         });
 
@@ -230,9 +333,9 @@ public class Plateau extends javax.swing.JFrame implements Observer {
         buttonRetourRapideJeu.setBorderPainted(false);
         buttonRetourRapideJeu.setContentAreaFilled(false);
         buttonRetourRapideJeu.setDisabledIcon(null);
-        buttonRetourRapideJeu.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                buttonRetourRapideJeuMouseClicked(evt);
+        buttonRetourRapideJeu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRetourRapideJeuActionPerformed(evt);
             }
         });
 
@@ -301,28 +404,459 @@ public class Plateau extends javax.swing.JFrame implements Observer {
 
         panelCharger.setBackground(new java.awt.Color(255, 255, 255));
 
-        jToggleButton7.setText("load");
+        buttonCharger.setText("Charger fichier CSV");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setText("1");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel4.setText("2");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel5.setText("3");
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel6.setText("4");
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel7.setText("5");
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel8.setText("6");
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel9.setText("7");
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel10.setText("8");
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel11.setText("9");
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel12.setText("1");
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel13.setText("2");
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel14.setText("3");
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel15.setText("4");
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel16.setText("5");
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel17.setText("6");
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel18.setText("7");
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel19.setText("8");
+
+        jLabel20.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel20.setText("9");
+
+        buttonCreate.setText("Créer fichier CSV");
+        buttonCreate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCreateActionPerformed(evt);
+            }
+        });
+
+        textFieldName.setToolTipText("");
+
+        jLabel21.setText("Entrer un nom de fichier");
 
         javax.swing.GroupLayout panelChargerLayout = new javax.swing.GroupLayout(panelCharger);
         panelCharger.setLayout(panelChargerLayout);
         panelChargerLayout.setHorizontalGroup(
             panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1053, Short.MAX_VALUE)
-            .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panelChargerLayout.createSequentialGroup()
-                    .addGap(0, 500, Short.MAX_VALUE)
-                    .addComponent(jToggleButton7)
-                    .addGap(0, 500, Short.MAX_VALUE)))
+            .addGroup(panelChargerLayout.createSequentialGroup()
+                .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelChargerLayout.createSequentialGroup()
+                        .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelChargerLayout.createSequentialGroup()
+                                .addGap(101, 101, 101)
+                                .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel12)
+                                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel14)
+                                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel16)
+                                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel18)
+                                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(40, 40, 40)
+                                .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(x5x1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(x6x1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(x4x1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(x2x1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(x3x1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(x1x1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(x8x1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(x9x1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(x7x1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel3))
+                                .addGap(70, 70, 70)
+                                .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(x5x2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(x6x2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(x4x2))
+                                    .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(x2x2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(x3x2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(x1x2))
+                                    .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(x8x2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(x9x2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(x7x2))
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(70, 70, 70)
+                                .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(x5x3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(x6x3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(x4x3))
+                                    .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(x2x3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(x3x3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(x1x3))
+                                    .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(x8x3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(x9x3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(x7x3))
+                                    .addComponent(jLabel5))
+                                .addGap(70, 70, 70)
+                                .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panelChargerLayout.createSequentialGroup()
+                                        .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(x5x4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(x6x4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(x4x4))
+                                            .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(x2x4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(x3x4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(x1x4))
+                                            .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(x8x4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(x9x4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(x7x4))
+                                            .addComponent(jLabel6))
+                                        .addGap(70, 70, 70)
+                                        .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(x5x5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(x6x5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(x4x5))
+                                            .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(x2x5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(x3x5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(x1x5))
+                                            .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(x8x5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(x9x5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(x7x5))
+                                            .addComponent(jLabel7))
+                                        .addGap(70, 70, 70)
+                                        .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel8)
+                                            .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(x5x6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(x6x6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(x4x6))
+                                            .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(x2x6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(x3x6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(x1x6))
+                                            .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(x8x6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(x9x6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(x7x6))))
+                                    .addComponent(buttonCreate)))
+                            .addGroup(panelChargerLayout.createSequentialGroup()
+                                .addGap(403, 403, 403)
+                                .addComponent(buttonCharger, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(70, 70, 70)
+                        .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(x5x7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(x6x7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(x4x7))
+                            .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(x2x7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(x3x7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(x1x7))
+                            .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(x8x7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(x9x7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(x7x7))
+                            .addComponent(jLabel9))
+                        .addGap(70, 70, 70)
+                        .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(x5x8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(x6x8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(x4x8))
+                            .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(x2x8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(x3x8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(x1x8))
+                            .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(x8x8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(x9x8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(x7x8))
+                            .addComponent(jLabel10))
+                        .addGap(70, 70, 70)
+                        .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11)
+                            .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(x5x9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(x6x9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(x4x9))
+                            .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(x2x9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(x3x9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(x1x9))
+                            .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(x8x9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(x9x9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(x7x9))))
+                    .addGroup(panelChargerLayout.createSequentialGroup()
+                        .addGap(369, 369, 369)
+                        .addComponent(textFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelChargerLayout.createSequentialGroup()
+                        .addGap(414, 414, 414)
+                        .addComponent(jLabel21)))
+                .addContainerGap(153, Short.MAX_VALUE))
         );
         panelChargerLayout.setVerticalGroup(
             panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 845, Short.MAX_VALUE)
-            .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panelChargerLayout.createSequentialGroup()
-                    .addGap(0, 411, Short.MAX_VALUE)
-                    .addComponent(jToggleButton7)
-                    .addGap(0, 411, Short.MAX_VALUE)))
+            .addGroup(panelChargerLayout.createSequentialGroup()
+                .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelChargerLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(buttonCharger)
+                        .addGap(69, 69, 69)
+                        .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(34, 34, 34)
+                        .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelChargerLayout.createSequentialGroup()
+                                .addComponent(x9x9)
+                                .addGap(45, 45, 45)
+                                .addComponent(x8x9)
+                                .addGap(45, 45, 45)
+                                .addComponent(x7x9)
+                                .addGap(45, 45, 45)
+                                .addComponent(x6x9)
+                                .addGap(45, 45, 45)
+                                .addComponent(x5x9)
+                                .addGap(45, 45, 45)
+                                .addComponent(x4x9)
+                                .addGap(45, 45, 45)
+                                .addComponent(x3x9)
+                                .addGap(45, 45, 45)
+                                .addComponent(x2x9)
+                                .addGap(45, 45, 45)
+                                .addComponent(x1x9))
+                            .addGroup(panelChargerLayout.createSequentialGroup()
+                                .addComponent(x9x8)
+                                .addGap(45, 45, 45)
+                                .addComponent(x8x8)
+                                .addGap(45, 45, 45)
+                                .addComponent(x7x8)
+                                .addGap(45, 45, 45)
+                                .addComponent(x6x8)
+                                .addGap(45, 45, 45)
+                                .addComponent(x5x8)
+                                .addGap(45, 45, 45)
+                                .addComponent(x4x8)
+                                .addGap(45, 45, 45)
+                                .addComponent(x3x8)
+                                .addGap(45, 45, 45)
+                                .addComponent(x2x8)
+                                .addGap(45, 45, 45)
+                                .addComponent(x1x8))
+                            .addGroup(panelChargerLayout.createSequentialGroup()
+                                .addComponent(x9x2)
+                                .addGap(45, 45, 45)
+                                .addComponent(x8x2)
+                                .addGap(45, 45, 45)
+                                .addComponent(x7x2)
+                                .addGap(45, 45, 45)
+                                .addComponent(x6x2)
+                                .addGap(45, 45, 45)
+                                .addComponent(x5x2)
+                                .addGap(45, 45, 45)
+                                .addComponent(x4x2)
+                                .addGap(45, 45, 45)
+                                .addComponent(x3x2)
+                                .addGap(45, 45, 45)
+                                .addComponent(x2x2)
+                                .addGap(45, 45, 45)
+                                .addComponent(x1x2))
+                            .addGroup(panelChargerLayout.createSequentialGroup()
+                                .addComponent(x9x3)
+                                .addGap(45, 45, 45)
+                                .addComponent(x8x3)
+                                .addGap(45, 45, 45)
+                                .addComponent(x7x3)
+                                .addGap(45, 45, 45)
+                                .addComponent(x6x3)
+                                .addGap(45, 45, 45)
+                                .addComponent(x5x3)
+                                .addGap(45, 45, 45)
+                                .addComponent(x4x3)
+                                .addGap(45, 45, 45)
+                                .addComponent(x3x3)
+                                .addGap(45, 45, 45)
+                                .addComponent(x2x3)
+                                .addGap(45, 45, 45)
+                                .addComponent(x1x3))
+                            .addGroup(panelChargerLayout.createSequentialGroup()
+                                .addComponent(x9x4)
+                                .addGap(45, 45, 45)
+                                .addComponent(x8x4)
+                                .addGap(45, 45, 45)
+                                .addComponent(x7x4)
+                                .addGap(45, 45, 45)
+                                .addComponent(x6x4)
+                                .addGap(45, 45, 45)
+                                .addComponent(x5x4)
+                                .addGap(45, 45, 45)
+                                .addComponent(x4x4)
+                                .addGap(45, 45, 45)
+                                .addComponent(x3x4)
+                                .addGap(45, 45, 45)
+                                .addComponent(x2x4)
+                                .addGap(45, 45, 45)
+                                .addComponent(x1x4))
+                            .addGroup(panelChargerLayout.createSequentialGroup()
+                                .addComponent(x9x5)
+                                .addGap(45, 45, 45)
+                                .addComponent(x8x5)
+                                .addGap(45, 45, 45)
+                                .addComponent(x7x5)
+                                .addGap(45, 45, 45)
+                                .addComponent(x6x5)
+                                .addGap(45, 45, 45)
+                                .addComponent(x5x5)
+                                .addGap(45, 45, 45)
+                                .addComponent(x4x5)
+                                .addGap(45, 45, 45)
+                                .addComponent(x3x5)
+                                .addGap(45, 45, 45)
+                                .addComponent(x2x5)
+                                .addGap(45, 45, 45)
+                                .addComponent(x1x5))
+                            .addGroup(panelChargerLayout.createSequentialGroup()
+                                .addComponent(x9x6)
+                                .addGap(45, 45, 45)
+                                .addComponent(x8x6)
+                                .addGap(45, 45, 45)
+                                .addComponent(x7x6)
+                                .addGap(45, 45, 45)
+                                .addComponent(x6x6)
+                                .addGap(45, 45, 45)
+                                .addComponent(x5x6)
+                                .addGap(45, 45, 45)
+                                .addComponent(x4x6)
+                                .addGap(45, 45, 45)
+                                .addComponent(x3x6)
+                                .addGap(45, 45, 45)
+                                .addComponent(x2x6)
+                                .addGap(45, 45, 45)
+                                .addComponent(x1x6))
+                            .addGroup(panelChargerLayout.createSequentialGroup()
+                                .addComponent(x9x7)
+                                .addGap(45, 45, 45)
+                                .addComponent(x8x7)
+                                .addGap(45, 45, 45)
+                                .addComponent(x7x7)
+                                .addGap(45, 45, 45)
+                                .addComponent(x6x7)
+                                .addGap(45, 45, 45)
+                                .addComponent(x5x7)
+                                .addGap(45, 45, 45)
+                                .addComponent(x4x7)
+                                .addGap(45, 45, 45)
+                                .addComponent(x3x7)
+                                .addGap(45, 45, 45)
+                                .addComponent(x2x7)
+                                .addGap(45, 45, 45)
+                                .addComponent(x1x7))))
+                    .addGroup(panelChargerLayout.createSequentialGroup()
+                        .addGap(158, 158, 158)
+                        .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(x9x1)
+                            .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(45, 45, 45)
+                        .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelChargerLayout.createSequentialGroup()
+                                .addComponent(x8x1)
+                                .addGap(45, 45, 45)
+                                .addComponent(x7x1)
+                                .addGap(43, 43, 43)
+                                .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(panelChargerLayout.createSequentialGroup()
+                                        .addComponent(x6x1)
+                                        .addGap(45, 45, 45)
+                                        .addComponent(x5x1))
+                                    .addGroup(panelChargerLayout.createSequentialGroup()
+                                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(43, 43, 43)
+                                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(43, 43, 43)
+                                .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(x4x1)
+                                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panelChargerLayout.createSequentialGroup()
+                                        .addGap(45, 45, 45)
+                                        .addComponent(x3x1))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelChargerLayout.createSequentialGroup()
+                                        .addGap(43, 43, 43)
+                                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(45, 45, 45)
+                                .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(panelChargerLayout.createSequentialGroup()
+                                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(panelChargerLayout.createSequentialGroup()
+                                        .addComponent(x2x1)
+                                        .addGap(45, 45, 45)
+                                        .addComponent(x1x1))))
+                            .addGroup(panelChargerLayout.createSequentialGroup()
+                                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(43, 43, 43)
+                                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addComponent(jLabel21)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(textFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(buttonCreate)
+                .addContainerGap())
         );
+
+        textFieldName.getAccessibleContext().setAccessibleName("");
 
         panelChargerMain.add(panelCharger, "card2");
 
@@ -356,7 +890,551 @@ public class Plateau extends javax.swing.JFrame implements Observer {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void buttonPlayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonPlayMouseClicked
+    private void onClickBandeauButtonLoad(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onClickBandeauButtonLoad
+        this.buttonLoad.setSelected(false);
+        panelLayout.removeAll();
+        panelLayout.add(panelChargerMain);
+        panelLayout.repaint();
+        panelLayout.revalidate();
+    }//GEN-LAST:event_onClickBandeauButtonLoad
+    
+    private void functionDeMerde(String file) {
+        int cpt = 0 ;
+        
+        try {
+        FileWriter fw = new FileWriter(file,true);
+        
+
+        if(this.x1x1.isSelected()) {
+            String ligne = cpt + "," + 1 + "," + 1 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x1x2.isSelected()) {
+            String ligne = cpt + "," + 1 + "," + 2 + "\n";
+            fw.write(ligne);
+            cpt++;;
+        }
+        
+        if(this.x1x3.isSelected()) {
+           String ligne = cpt + "," + 1 + "," + 3 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x1x4.isSelected()) {
+            String ligne = cpt + "," + 1 + "," + 4 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x1x5.isSelected()) {
+            String ligne = cpt + "," + 1 + "," + 5 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x1x6.isSelected()) {
+            String ligne = cpt + "," + 1 + "," + 6 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x1x7.isSelected()) {
+            String ligne = cpt + "," + 1 + "," + 7 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x1x8.isSelected()) {
+            String ligne = cpt + "," + 1 + "," + 8 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x1x9.isSelected()) {
+            String ligne = cpt + "," + 1 + "," + 9 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x2x1.isSelected()) {
+            String ligne = cpt + "," + 2 + "," + 1 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x2x2.isSelected()) {
+            String ligne = cpt + "," + 2 + "," + 2 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x2x3.isSelected()) {
+            String ligne = cpt + "," + 2 + "," + 3 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x2x4.isSelected()) {
+            String ligne = cpt + "," + 2 + "," + 4 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        else if(this.x2x5.isSelected()) {
+            String ligne = cpt + "," + 2 + "," + 5 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x2x6.isSelected()) {
+            String ligne = cpt + "," + 2 + "," + 6 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x2x7.isSelected()) {
+            String ligne = cpt + "," + 2 + "," + 7 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x2x8.isSelected()) {
+            String ligne = cpt + "," + 2 + "," + 8 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x2x9.isSelected()) {
+            String ligne = cpt + "," + 2 + "," + 9 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x3x1.isSelected()) {
+            String ligne = cpt + "," + 3 + "," + 1 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x3x2.isSelected()) {
+            String ligne = cpt + "," + 3 + "," + 2 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x3x3.isSelected()) {
+            String ligne = cpt + "," + 3 + "," + 3 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x3x4.isSelected()) {
+            String ligne = cpt + "," + 3 + "," + 4 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x3x5.isSelected()) {
+            String ligne = cpt + "," + 3 + "," + 5 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+       
+        if(this.x3x6.isSelected()) {
+            String ligne = cpt + "," + 3 + "," + 6 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x3x7.isSelected()) {
+            String ligne = cpt + "," + 3 + "," + 7 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x3x8.isSelected()) {
+            String ligne = cpt + "," + 3 + "," + 8 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x3x9.isSelected()) {
+            String ligne = cpt + "," + 3 + "," + 9 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x4x1.isSelected()) {
+            String ligne = cpt + "," + 4 + "," + 1 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x4x2.isSelected()) {
+            String ligne = cpt + "," + 4 + "," + 2 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x4x3.isSelected()) {
+            String ligne = cpt + "," + 4 + "," + 3 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x4x4.isSelected()) {
+            String ligne = cpt + "," + 4 + "," + 4 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x4x5.isSelected()) {
+            String ligne = cpt + "," + 4 + "," + 5 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x4x6.isSelected()) {
+            String ligne = cpt + "," + 4 + "," + 6 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x4x7.isSelected()) {
+            String ligne = cpt + "," + 4 + "," + 7 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x4x8.isSelected()) {
+            String ligne = cpt + "," + 4 + "," + 8 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x4x9.isSelected()) {
+            String ligne = cpt + "," + 4 + "," + 9 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x5x1.isSelected()) {
+            String ligne = cpt + "," + 5 + "," + 1 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x5x2.isSelected()) {
+            String ligne = cpt + "," + 5 + "," + 2 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x5x3.isSelected()) {
+            String ligne = cpt + "," + 5 + "," + 3 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x5x4.isSelected()) {
+            String ligne = cpt + "," + 5 + "," + 4 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x5x5.isSelected()) {
+            String ligne = cpt + "," + 5 + "," + 5 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x5x6.isSelected()) {
+            String ligne = cpt + "," + 5 + "," + 6 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x5x7.isSelected()) {
+            String ligne = cpt + "," + 5 + "," + 7 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x5x8.isSelected()) {
+            String ligne = cpt + "," + 5 + "," + 8 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x5x9.isSelected()) {
+            String ligne = cpt + "," + 5 + "," + 9 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x6x1.isSelected()) {
+            String ligne = cpt + "," + 6 + "," + 1 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x6x2.isSelected()) {
+            String ligne = cpt + "," + 6 + "," + 2 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x6x3.isSelected()) {
+            String ligne = cpt + "," + 6 + "," + 3 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x6x4.isSelected()) {
+            String ligne = cpt + "," + 6 + "," + 4 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x6x5.isSelected()) {
+            String ligne = cpt + "," + 6 + "," + 5 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x6x6.isSelected()) {
+            String ligne = cpt + "," + 6 + "," + 6 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x6x7.isSelected()) {
+            String ligne = cpt + "," + 6 + "," + 7 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x6x8.isSelected()) {
+            String ligne = cpt + "," + 6 + "," + 8 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x6x9.isSelected()) {
+            String ligne = cpt + "," + 6 + "," + 9 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x7x1.isSelected()) {
+            String ligne = cpt + "," + 7 + "," + 1 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x7x2.isSelected()) {
+            String ligne = cpt + "," + 7 + "," + 2 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x7x3.isSelected()) {
+            String ligne = cpt + "," + 7 + "," + 3 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x7x4.isSelected()) {
+            String ligne = cpt + "," + 7 + "," + 4 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x7x5.isSelected()) {
+            String ligne = cpt + "," + 7 + "," + 5 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x7x6.isSelected()) {
+            String ligne = cpt + "," + 7 + "," + 6 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x7x7.isSelected()) {
+            String ligne = cpt + "," + 7 + "," + 7 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x7x8.isSelected()) {
+            String ligne = cpt + "," + 7 + "," + 8 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x7x9.isSelected()) {
+            String ligne = cpt + "," + 7 + "," + 9 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x8x1.isSelected()) {
+            String ligne = cpt + "," + 8 + "," + 1 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x8x2.isSelected()) {
+            String ligne = cpt + "," + 8 + "," + 2 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x8x3.isSelected()) {
+            String ligne = cpt + "," + 8 + "," + 3 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x8x4.isSelected()) {
+            String ligne = cpt + "," + 8 + "," + 4 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x8x5.isSelected()) {
+            String ligne = cpt + "," + 8 + "," + 5 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x8x6.isSelected()) {
+            String ligne = cpt + "," + 8 + "," + 6 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x8x7.isSelected()) {
+            String ligne = cpt + "," + 8 + "," + 7 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x8x8.isSelected()) {
+            String ligne = cpt + "," + 8 + "," + 8 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x9x1.isSelected()) {
+            String ligne = cpt + "," + 9 + "," + 1 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x9x2.isSelected()) {
+            String ligne = cpt + "," + 9 + "," + 2 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x9x3.isSelected()) {
+            String ligne = cpt + "," + 9 + "," + 3 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x9x4.isSelected()) {
+            String ligne = cpt + "," + 9 + "," + 4 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x9x5.isSelected()) {
+            String ligne = cpt + "," + 9 + "," + 5 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x9x6.isSelected()) {
+            String ligne = cpt + "," + 9 + "," + 6 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x9x7.isSelected()) {
+            String ligne = cpt + "," + 9 + "," + 7 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x9x8.isSelected()) {
+            String ligne = cpt + "," + 9 + "," + 8 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x9x9.isSelected()) {
+            String ligne = cpt + "," + 9 + "," + 9 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        
+        if(this.x8x9.isSelected()) {
+            String ligne = cpt + "," + 5 + "," + 9 + "\n";
+            fw.write(ligne);
+            cpt++;
+        }
+        fw.close();
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void remplirCSV(String nameFile) {
+        try {
+            String tmp = "F:\\Documents\\NetBeansProjects\\LeGrosDebrouillard\\src\\CSV\\" ;
+            tmp += nameFile ;
+            tmp += ".csv" ;
+            System.out.println(tmp);
+            File f = new File(tmp);
+            
+            if(f.createNewFile()) {
+                System.out.println("crée un fichier");
+                this.functionDeMerde(tmp);
+            }
+            else {
+                JOptionPane.showMessageDialog(null,"Un fichier existe déjà");
+            }
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }        
+    }
+    
+    private void buttonCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCreateActionPerformed
+        this.buttonCreate.setSelected(false);
+        String name = this.textFieldName.getText().toString() ;
+        if(name.equals("")) {
+            JOptionPane.showMessageDialog(null,"Un nom de fichier doit être remplit");
+        }
+        else {
+            if(name.contains(".csv")) {
+                JOptionPane.showMessageDialog(null,"Veuillez ne pas mettre d'extension");
+            }
+            else {
+                this.remplirCSV(name);
+            }
+        }
+    }//GEN-LAST:event_buttonCreateActionPerformed
+
+    private void onClickBandeauButtonPlay(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onClickBandeauButtonPlay
+        this.buttonPlay.setSelected(false);
         panelLayout.removeAll();
         panelLayout.add(panelJeuMain);
         model = new TSPModel_PtiDeb(this);
@@ -376,24 +1454,14 @@ public class Plateau extends javax.swing.JFrame implements Observer {
         panelLayout.repaint();
         panelLayout.revalidate();
         remplirGraph();
-    }//GEN-LAST:event_buttonPlayMouseClicked
+    }//GEN-LAST:event_onClickBandeauButtonPlay
 
-    private void buttonLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLoadActionPerformed
-       
-    }//GEN-LAST:event_buttonLoadActionPerformed
-
-    private void buttonLoadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonLoadMouseClicked
-        panelLayout.removeAll();
-        panelLayout.add(panelChargerMain);
-        panelLayout.repaint();
-        panelLayout.revalidate();
-    }//GEN-LAST:event_buttonLoadMouseClicked
-
-    private void buttonQuitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonQuitMouseClicked
+    private void onClickBandeauButtonQuit(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onClickBandeauButtonQuit
         System.exit(0);
-    }//GEN-LAST:event_buttonQuitMouseClicked
+    }//GEN-LAST:event_onClickBandeauButtonQuit
 
-    private void buttonPlayPauseJeuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonPlayPauseJeuMouseClicked
+    private void buttonPlayPauseJeuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPlayPauseJeuActionPerformed
+        this.buttonPlayPauseJeu.setSelected(false);
         if(!begin) {
             begin = true ;
             thread = new Thread(model) ;
@@ -418,15 +1486,17 @@ public class Plateau extends javax.swing.JFrame implements Observer {
             
             return ;
         }
-    }//GEN-LAST:event_buttonPlayPauseJeuMouseClicked
+    }//GEN-LAST:event_buttonPlayPauseJeuActionPerformed
 
-    private void buttonRetourRapideJeuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonRetourRapideJeuMouseClicked
-       this.wait += 200 ;
-    }//GEN-LAST:event_buttonRetourRapideJeuMouseClicked
+    private void buttonRetourRapideJeuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRetourRapideJeuActionPerformed
+        this.buttonRetourRapideJeu.setSelected(false);
+        this.wait += 200 ;
+    }//GEN-LAST:event_buttonRetourRapideJeuActionPerformed
 
-    private void buttonAvanceRapideJeuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonAvanceRapideJeuMouseClicked
+    private void buttonAvanceRapideJeuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAvanceRapideJeuActionPerformed
+        this.buttonAvanceRapideJeu.setSelected(false);
         this.wait -= 200 ;
-    }//GEN-LAST:event_buttonAvanceRapideJeuMouseClicked
+    }//GEN-LAST:event_buttonAvanceRapideJeuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -543,7 +1613,7 @@ public class Plateau extends javax.swing.JFrame implements Observer {
         }
     }
     
-     public void addToGraph(int id, int p1, int p2) {
+    public void addToGraph(int id, int p1, int p2) {
         this.current.addEdge(Integer.toString(id), Integer.toString(p1), Integer.toString(p2));
     }
 
@@ -555,6 +1625,7 @@ public class Plateau extends javax.swing.JFrame implements Observer {
         while(this.best.getEdgeCount() > 0) {
             this.best.removeEdge(0);
         }
+        
         for (Edge edge : this.current.getEachEdge()) {
             this.best.addEdge(edge.getId(), edge.getSourceNode().getId(), edge.getTargetNode().getId());
         }
@@ -570,13 +1641,15 @@ public class Plateau extends javax.swing.JFrame implements Observer {
     private boolean stop = true ;
     TSPModel_PtiDeb model ;
     Thread thread ;
-    private String path = "F:\\Documents\\NetBeansProjects\\LeGrosDebrouillard\\src\\CSV\\Default.csv" ;
+    private String path = "F:\\Documents\\NetBeansProjects\\LeGrosDebrouillard\\src\\CSV\\Nizaru.csv" ;
     private Graph current = new SingleGraph("current");
     private Graph best = new SingleGraph("best");
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bestGraph;
     private javax.swing.JToggleButton buttonArretJeu;
     private javax.swing.JToggleButton buttonAvanceRapideJeu;
+    private javax.swing.JToggleButton buttonCharger;
+    private javax.swing.JToggleButton buttonCreate;
     private javax.swing.JToggleButton buttonLoad;
     private javax.swing.JToggleButton buttonPlay;
     private javax.swing.JToggleButton buttonPlayPauseJeu;
@@ -585,10 +1658,28 @@ public class Plateau extends javax.swing.JFrame implements Observer {
     private javax.swing.JToggleButton buttonRetourRapideJeu;
     private javax.swing.JPanel currentGraph;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton7;
     private javax.swing.JPanel panelAcceuil;
     private javax.swing.JPanel panelAcceuilMain;
     private javax.swing.JPanel panelBandeau;
@@ -597,5 +1688,87 @@ public class Plateau extends javax.swing.JFrame implements Observer {
     private javax.swing.JPanel panelJeu;
     private javax.swing.JPanel panelJeuMain;
     private javax.swing.JPanel panelLayout;
+    private javax.swing.JTextField textFieldName;
+    private javax.swing.JRadioButton x1x1;
+    private javax.swing.JRadioButton x1x2;
+    private javax.swing.JRadioButton x1x3;
+    private javax.swing.JRadioButton x1x4;
+    private javax.swing.JRadioButton x1x5;
+    private javax.swing.JRadioButton x1x6;
+    private javax.swing.JRadioButton x1x7;
+    private javax.swing.JRadioButton x1x8;
+    private javax.swing.JRadioButton x1x9;
+    private javax.swing.JRadioButton x2x1;
+    private javax.swing.JRadioButton x2x2;
+    private javax.swing.JRadioButton x2x3;
+    private javax.swing.JRadioButton x2x4;
+    private javax.swing.JRadioButton x2x5;
+    private javax.swing.JRadioButton x2x6;
+    private javax.swing.JRadioButton x2x7;
+    private javax.swing.JRadioButton x2x8;
+    private javax.swing.JRadioButton x2x9;
+    private javax.swing.JRadioButton x3x1;
+    private javax.swing.JRadioButton x3x2;
+    private javax.swing.JRadioButton x3x3;
+    private javax.swing.JRadioButton x3x4;
+    private javax.swing.JRadioButton x3x5;
+    private javax.swing.JRadioButton x3x6;
+    private javax.swing.JRadioButton x3x7;
+    private javax.swing.JRadioButton x3x8;
+    private javax.swing.JRadioButton x3x9;
+    private javax.swing.JRadioButton x4x1;
+    private javax.swing.JRadioButton x4x2;
+    private javax.swing.JRadioButton x4x3;
+    private javax.swing.JRadioButton x4x4;
+    private javax.swing.JRadioButton x4x5;
+    private javax.swing.JRadioButton x4x6;
+    private javax.swing.JRadioButton x4x7;
+    private javax.swing.JRadioButton x4x8;
+    private javax.swing.JRadioButton x4x9;
+    private javax.swing.JRadioButton x5x1;
+    private javax.swing.JRadioButton x5x2;
+    private javax.swing.JRadioButton x5x3;
+    private javax.swing.JRadioButton x5x4;
+    private javax.swing.JRadioButton x5x5;
+    private javax.swing.JRadioButton x5x6;
+    private javax.swing.JRadioButton x5x7;
+    private javax.swing.JRadioButton x5x8;
+    private javax.swing.JRadioButton x5x9;
+    private javax.swing.JRadioButton x6x1;
+    private javax.swing.JRadioButton x6x2;
+    private javax.swing.JRadioButton x6x3;
+    private javax.swing.JRadioButton x6x4;
+    private javax.swing.JRadioButton x6x5;
+    private javax.swing.JRadioButton x6x6;
+    private javax.swing.JRadioButton x6x7;
+    private javax.swing.JRadioButton x6x8;
+    private javax.swing.JRadioButton x6x9;
+    private javax.swing.JRadioButton x7x1;
+    private javax.swing.JRadioButton x7x2;
+    private javax.swing.JRadioButton x7x3;
+    private javax.swing.JRadioButton x7x4;
+    private javax.swing.JRadioButton x7x5;
+    private javax.swing.JRadioButton x7x6;
+    private javax.swing.JRadioButton x7x7;
+    private javax.swing.JRadioButton x7x8;
+    private javax.swing.JRadioButton x7x9;
+    private javax.swing.JRadioButton x8x1;
+    private javax.swing.JRadioButton x8x2;
+    private javax.swing.JRadioButton x8x3;
+    private javax.swing.JRadioButton x8x4;
+    private javax.swing.JRadioButton x8x5;
+    private javax.swing.JRadioButton x8x6;
+    private javax.swing.JRadioButton x8x7;
+    private javax.swing.JRadioButton x8x8;
+    private javax.swing.JRadioButton x8x9;
+    private javax.swing.JRadioButton x9x1;
+    private javax.swing.JRadioButton x9x2;
+    private javax.swing.JRadioButton x9x3;
+    private javax.swing.JRadioButton x9x4;
+    private javax.swing.JRadioButton x9x5;
+    private javax.swing.JRadioButton x9x6;
+    private javax.swing.JRadioButton x9x7;
+    private javax.swing.JRadioButton x9x8;
+    private javax.swing.JRadioButton x9x9;
     // End of variables declaration//GEN-END:variables
 }
