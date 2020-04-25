@@ -12,8 +12,11 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import org.graphstream.graph.Edge;
@@ -55,6 +58,7 @@ public class Plateau extends javax.swing.JFrame implements Observer {
         buttonLoad = new javax.swing.JToggleButton();
         buttonQuit = new javax.swing.JToggleButton();
         jPanel1 = new javax.swing.JPanel();
+        buttonCreate = new javax.swing.JToggleButton();
         panelLayout = new javax.swing.JPanel();
         panelAcceuilMain = new javax.swing.JPanel();
         panelAcceuil = new javax.swing.JPanel();
@@ -72,7 +76,6 @@ public class Plateau extends javax.swing.JFrame implements Observer {
         currentGraph = new javax.swing.JPanel();
         panelChargerMain = new javax.swing.JPanel();
         panelCharger = new javax.swing.JPanel();
-        buttonCharger = new javax.swing.JToggleButton();
         x1x1 = new javax.swing.JRadioButton();
         x2x1 = new javax.swing.JRadioButton();
         x3x1 = new javax.swing.JRadioButton();
@@ -172,11 +175,18 @@ public class Plateau extends javax.swing.JFrame implements Observer {
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        buttonCreate = new javax.swing.JToggleButton();
+        buttonCreerCVS = new javax.swing.JToggleButton();
         textFieldName = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        panelCreateMain = new javax.swing.JPanel();
+        panelCreate = new javax.swing.JPanel();
+        fileChooser = new javax.swing.JFileChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        panelBandeau.setBackground(java.awt.Color.lightGray);
 
         buttonPlay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/play.png"))); // NOI18N
         buttonPlay.setBorder(null);
@@ -223,6 +233,16 @@ public class Plateau extends javax.swing.JFrame implements Observer {
             .addGap(0, 14, Short.MAX_VALUE)
         );
 
+        buttonCreate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/create-ConvertImage.png"))); // NOI18N
+        buttonCreate.setBorder(null);
+        buttonCreate.setBorderPainted(false);
+        buttonCreate.setContentAreaFilled(false);
+        buttonCreate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onClickBandeauButtonCreate(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelBandeauLayout = new javax.swing.GroupLayout(panelBandeau);
         panelBandeau.setLayout(panelBandeauLayout);
         panelBandeauLayout.setHorizontalGroup(
@@ -230,9 +250,11 @@ public class Plateau extends javax.swing.JFrame implements Observer {
             .addGroup(panelBandeauLayout.createSequentialGroup()
                 .addGap(53, 53, 53)
                 .addComponent(buttonPlay, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 316, Short.MAX_VALUE)
+                .addGap(135, 135, 135)
+                .addComponent(buttonCreate)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 193, Short.MAX_VALUE)
                 .addComponent(buttonLoad)
-                .addGap(308, 308, 308)
+                .addGap(195, 195, 195)
                 .addComponent(buttonQuit)
                 .addGap(60, 60, 60))
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -242,10 +264,14 @@ public class Plateau extends javax.swing.JFrame implements Observer {
             .addGroup(panelBandeauLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelBandeauLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buttonQuit)
-                    .addComponent(buttonPlay)
-                    .addComponent(buttonLoad))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(panelBandeauLayout.createSequentialGroup()
+                        .addGroup(panelBandeauLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(buttonQuit)
+                            .addComponent(buttonLoad)
+                            .addComponent(buttonPlay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 16, Short.MAX_VALUE))
+                    .addComponent(buttonCreate))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -291,7 +317,7 @@ public class Plateau extends javax.swing.JFrame implements Observer {
         panelAcceuilLayout.setVerticalGroup(
             panelAcceuilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelAcceuilLayout.createSequentialGroup()
-                .addContainerGap(378, Short.MAX_VALUE)
+                .addContainerGap(357, Short.MAX_VALUE)
                 .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -310,13 +336,18 @@ public class Plateau extends javax.swing.JFrame implements Observer {
         buttonArretJeu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/arret.png"))); // NOI18N
         buttonArretJeu.setBorderPainted(false);
         buttonArretJeu.setContentAreaFilled(false);
+        buttonArretJeu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonArretJeuActionPerformed(evt);
+            }
+        });
 
-        buttonPlayPauseJeu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/pause.png"))); // NOI18N
+        buttonPlayPauseJeu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/play.png"))); // NOI18N
         buttonPlayPauseJeu.setBorderPainted(false);
         buttonPlayPauseJeu.setContentAreaFilled(false);
         buttonPlayPauseJeu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonPlayPauseJeuActionPerformed(evt);
+                onClickPlayPauseButton(evt);
             }
         });
 
@@ -325,7 +356,7 @@ public class Plateau extends javax.swing.JFrame implements Observer {
         buttonAvanceRapideJeu.setContentAreaFilled(false);
         buttonAvanceRapideJeu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonAvanceRapideJeuActionPerformed(evt);
+                onClickButtonAvanceRapide(evt);
             }
         });
 
@@ -335,13 +366,18 @@ public class Plateau extends javax.swing.JFrame implements Observer {
         buttonRetourRapideJeu.setDisabledIcon(null);
         buttonRetourRapideJeu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonRetourRapideJeuActionPerformed(evt);
+                onClickRetourRapide(evt);
             }
         });
 
         buttonRecommencerJeu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/restart.png"))); // NOI18N
         buttonRecommencerJeu.setBorderPainted(false);
         buttonRecommencerJeu.setContentAreaFilled(false);
+        buttonRecommencerJeu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRecommencerJeuActionPerformed(evt);
+            }
+        });
 
         bestGraph.setBackground(new java.awt.Color(255, 255, 255));
         bestGraph.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -363,7 +399,7 @@ public class Plateau extends javax.swing.JFrame implements Observer {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelJeuLayout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addComponent(currentGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(panelJeuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelJeuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panelJeuLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonPlayPauseJeu, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -374,8 +410,8 @@ public class Plateau extends javax.swing.JFrame implements Observer {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonRecommencerJeu, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelJeuLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(panelJeuLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
                         .addComponent(bestGraph, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
@@ -386,14 +422,15 @@ public class Plateau extends javax.swing.JFrame implements Observer {
                 .addGroup(panelJeuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(currentGraph, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
                     .addComponent(bestGraph, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
-                .addGroup(panelJeuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(buttonRecommencerJeu, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panelJeuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(buttonAvanceRapideJeu, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(buttonArretJeu, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(buttonPlayPauseJeu, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(buttonRetourRapideJeu, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 166, Short.MAX_VALUE)
+                .addGroup(panelJeuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelJeuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(buttonRecommencerJeu, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(panelJeuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(buttonAvanceRapideJeu, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buttonArretJeu, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buttonRetourRapideJeu, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(buttonPlayPauseJeu, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24))
         );
 
@@ -403,8 +440,6 @@ public class Plateau extends javax.swing.JFrame implements Observer {
         panelChargerMain.setLayout(new java.awt.CardLayout());
 
         panelCharger.setBackground(new java.awt.Color(255, 255, 255));
-
-        buttonCharger.setText("Charger fichier CSV");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("1");
@@ -460,10 +495,10 @@ public class Plateau extends javax.swing.JFrame implements Observer {
         jLabel20.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel20.setText("9");
 
-        buttonCreate.setText("Créer fichier CSV");
-        buttonCreate.addActionListener(new java.awt.event.ActionListener() {
+        buttonCreerCVS.setText("Créer fichier CSV");
+        buttonCreerCVS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonCreateActionPerformed(evt);
+                buttonCreerCVSActionPerformed(evt);
             }
         });
 
@@ -471,70 +506,79 @@ public class Plateau extends javax.swing.JFrame implements Observer {
 
         jLabel21.setText("Entrer un nom de fichier");
 
+        jLabel22.setText("                                             Vous pouvez créer votre progre graph !");
+
+        jLabel23.setText("                                                Cliquez sur les point que vous voullez mettre dans votre graph ! rien de plus simple");
+
         javax.swing.GroupLayout panelChargerLayout = new javax.swing.GroupLayout(panelCharger);
         panelCharger.setLayout(panelChargerLayout);
         panelChargerLayout.setHorizontalGroup(
             panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelChargerLayout.createSequentialGroup()
-                .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelChargerLayout.createSequentialGroup()
+                .addGap(378, 378, 378)
+                .addComponent(textFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelChargerLayout.createSequentialGroup()
+                .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelChargerLayout.createSequentialGroup()
+                        .addGap(101, 101, 101)
+                        .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(40, 40, 40)
+                        .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(x5x1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(x6x1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(x4x1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(x2x1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(x3x1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(x8x1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(x9x1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(x7x1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3)
+                            .addComponent(x1x1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(70, 70, 70)
+                        .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(x5x2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(x6x2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(x4x2))
+                            .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(x2x2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(x3x2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(x1x2))
+                            .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(x8x2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(x9x2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(x7x2))
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(70, 70, 70)
+                        .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(x5x3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(x6x3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(x4x3))
+                            .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(x2x3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(x3x3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(x1x3))
+                            .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(x8x3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(x9x3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(x7x3))
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                         .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelChargerLayout.createSequentialGroup()
-                                .addGap(101, 101, 101)
                                 .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel12)
-                                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel14)
-                                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel16)
-                                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel18)
-                                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(40, 40, 40)
-                                .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(x5x1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(x6x1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(x4x1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(x2x1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(x3x1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(x1x1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(x8x1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(x9x1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(x7x1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel3))
-                                .addGap(70, 70, 70)
-                                .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(x5x2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(x6x2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(x4x2))
-                                    .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(x2x2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(x3x2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(x1x2))
-                                    .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(x8x2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(x9x2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(x7x2))
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(70, 70, 70)
-                                .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(x5x3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(x6x3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(x4x3))
-                                    .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(x2x3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(x3x3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(x1x3))
-                                    .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(x8x3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(x9x3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(x7x3))
-                                    .addComponent(jLabel5))
-                                .addGap(70, 70, 70)
-                                .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(panelChargerLayout.createSequentialGroup()
                                         .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -564,26 +608,24 @@ public class Plateau extends javax.swing.JFrame implements Observer {
                                                 .addComponent(x8x5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addComponent(x9x5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addComponent(x7x5))
-                                            .addComponent(jLabel7))
-                                        .addGap(70, 70, 70)
-                                        .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel8)
-                                            .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(x5x6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(x6x6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(x4x6))
-                                            .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(x2x6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(x3x6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(x1x6))
-                                            .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(x8x6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(x9x6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(x7x6))))
-                                    .addComponent(buttonCreate)))
-                            .addGroup(panelChargerLayout.createSequentialGroup()
-                                .addGap(403, 403, 403)
-                                .addComponent(buttonCharger, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(jLabel7)))
+                                    .addComponent(jLabel21))
+                                .addGap(70, 70, 70)
+                                .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8)
+                                    .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(x5x6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(x6x6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(x4x6))
+                                    .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(x2x6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(x3x6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(x1x6))
+                                    .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(x8x6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(x9x6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(x7x6))))
+                            .addComponent(buttonCreerCVS))
                         .addGap(70, 70, 70)
                         .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -629,236 +671,259 @@ public class Plateau extends javax.swing.JFrame implements Observer {
                                 .addComponent(x8x9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(x9x9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(x7x9))))
-                    .addGroup(panelChargerLayout.createSequentialGroup()
-                        .addGap(369, 369, 369)
-                        .addComponent(textFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelChargerLayout.createSequentialGroup()
-                        .addGap(414, 414, 414)
-                        .addComponent(jLabel21)))
-                .addContainerGap(153, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelChargerLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(150, 150, 150))
         );
         panelChargerLayout.setVerticalGroup(
             panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelChargerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
                 .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelChargerLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(buttonCharger)
-                        .addGap(69, 69, 69)
-                        .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(34, 34, 34)
+                        .addComponent(x9x9)
+                        .addGap(45, 45, 45)
+                        .addComponent(x8x9)
+                        .addGap(45, 45, 45)
+                        .addComponent(x7x9)
+                        .addGap(45, 45, 45)
+                        .addComponent(x6x9)
+                        .addGap(45, 45, 45)
+                        .addComponent(x5x9)
+                        .addGap(45, 45, 45)
+                        .addComponent(x4x9)
+                        .addGap(45, 45, 45)
+                        .addComponent(x3x9)
+                        .addGap(45, 45, 45)
+                        .addComponent(x2x9)
+                        .addGap(45, 45, 45)
+                        .addComponent(x1x9))
+                    .addGroup(panelChargerLayout.createSequentialGroup()
+                        .addComponent(x9x8)
+                        .addGap(45, 45, 45)
+                        .addComponent(x8x8)
+                        .addGap(45, 45, 45)
+                        .addComponent(x7x8)
+                        .addGap(45, 45, 45)
+                        .addComponent(x6x8)
+                        .addGap(45, 45, 45)
+                        .addComponent(x5x8)
+                        .addGap(45, 45, 45)
+                        .addComponent(x4x8)
+                        .addGap(45, 45, 45)
+                        .addComponent(x3x8)
+                        .addGap(45, 45, 45)
+                        .addComponent(x2x8)
+                        .addGap(45, 45, 45)
+                        .addComponent(x1x8))
+                    .addGroup(panelChargerLayout.createSequentialGroup()
+                        .addComponent(x9x3)
+                        .addGap(45, 45, 45)
+                        .addComponent(x8x3)
+                        .addGap(45, 45, 45)
+                        .addComponent(x7x3)
+                        .addGap(45, 45, 45)
+                        .addComponent(x6x3)
+                        .addGap(45, 45, 45)
+                        .addComponent(x5x3)
+                        .addGap(45, 45, 45)
+                        .addComponent(x4x3)
+                        .addGap(45, 45, 45)
+                        .addComponent(x3x3)
+                        .addGap(45, 45, 45)
+                        .addComponent(x2x3)
+                        .addGap(45, 45, 45)
+                        .addComponent(x1x3))
+                    .addGroup(panelChargerLayout.createSequentialGroup()
+                        .addComponent(x9x4)
+                        .addGap(45, 45, 45)
+                        .addComponent(x8x4)
+                        .addGap(45, 45, 45)
+                        .addComponent(x7x4)
+                        .addGap(45, 45, 45)
+                        .addComponent(x6x4)
+                        .addGap(45, 45, 45)
+                        .addComponent(x5x4)
+                        .addGap(45, 45, 45)
+                        .addComponent(x4x4)
+                        .addGap(45, 45, 45)
+                        .addComponent(x3x4)
+                        .addGap(45, 45, 45)
+                        .addComponent(x2x4)
+                        .addGap(45, 45, 45)
+                        .addComponent(x1x4))
+                    .addGroup(panelChargerLayout.createSequentialGroup()
+                        .addComponent(x9x5)
+                        .addGap(45, 45, 45)
+                        .addComponent(x8x5)
+                        .addGap(45, 45, 45)
+                        .addComponent(x7x5)
+                        .addGap(45, 45, 45)
+                        .addComponent(x6x5)
+                        .addGap(45, 45, 45)
+                        .addComponent(x5x5)
+                        .addGap(45, 45, 45)
+                        .addComponent(x4x5)
+                        .addGap(45, 45, 45)
+                        .addComponent(x3x5)
+                        .addGap(45, 45, 45)
+                        .addComponent(x2x5)
+                        .addGap(45, 45, 45)
+                        .addComponent(x1x5))
+                    .addGroup(panelChargerLayout.createSequentialGroup()
+                        .addComponent(x9x6)
+                        .addGap(45, 45, 45)
+                        .addComponent(x8x6)
+                        .addGap(45, 45, 45)
+                        .addComponent(x7x6)
+                        .addGap(45, 45, 45)
+                        .addComponent(x6x6)
+                        .addGap(45, 45, 45)
+                        .addComponent(x5x6)
+                        .addGap(45, 45, 45)
+                        .addComponent(x4x6)
+                        .addGap(45, 45, 45)
+                        .addComponent(x3x6)
+                        .addGap(45, 45, 45)
+                        .addComponent(x2x6)
+                        .addGap(45, 45, 45)
+                        .addComponent(x1x6))
+                    .addGroup(panelChargerLayout.createSequentialGroup()
+                        .addComponent(x9x7)
+                        .addGap(45, 45, 45)
+                        .addComponent(x8x7)
+                        .addGap(45, 45, 45)
+                        .addComponent(x7x7)
+                        .addGap(45, 45, 45)
+                        .addComponent(x6x7)
+                        .addGap(45, 45, 45)
+                        .addComponent(x5x7)
+                        .addGap(45, 45, 45)
+                        .addComponent(x4x7)
+                        .addGap(45, 45, 45)
+                        .addComponent(x3x7)
+                        .addGap(45, 45, 45)
+                        .addComponent(x2x7)
+                        .addGap(45, 45, 45)
+                        .addComponent(x1x7))
+                    .addGroup(panelChargerLayout.createSequentialGroup()
                         .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelChargerLayout.createSequentialGroup()
-                                .addComponent(x9x9)
-                                .addGap(45, 45, 45)
-                                .addComponent(x8x9)
-                                .addGap(45, 45, 45)
-                                .addComponent(x7x9)
-                                .addGap(45, 45, 45)
-                                .addComponent(x6x9)
-                                .addGap(45, 45, 45)
-                                .addComponent(x5x9)
-                                .addGap(45, 45, 45)
-                                .addComponent(x4x9)
-                                .addGap(45, 45, 45)
-                                .addComponent(x3x9)
-                                .addGap(45, 45, 45)
-                                .addComponent(x2x9)
-                                .addGap(45, 45, 45)
-                                .addComponent(x1x9))
-                            .addGroup(panelChargerLayout.createSequentialGroup()
-                                .addComponent(x9x8)
-                                .addGap(45, 45, 45)
-                                .addComponent(x8x8)
-                                .addGap(45, 45, 45)
-                                .addComponent(x7x8)
-                                .addGap(45, 45, 45)
-                                .addComponent(x6x8)
-                                .addGap(45, 45, 45)
-                                .addComponent(x5x8)
-                                .addGap(45, 45, 45)
-                                .addComponent(x4x8)
-                                .addGap(45, 45, 45)
-                                .addComponent(x3x8)
-                                .addGap(45, 45, 45)
-                                .addComponent(x2x8)
-                                .addGap(45, 45, 45)
-                                .addComponent(x1x8))
                             .addGroup(panelChargerLayout.createSequentialGroup()
                                 .addComponent(x9x2)
                                 .addGap(45, 45, 45)
                                 .addComponent(x8x2)
                                 .addGap(45, 45, 45)
-                                .addComponent(x7x2)
-                                .addGap(45, 45, 45)
-                                .addComponent(x6x2)
-                                .addGap(45, 45, 45)
-                                .addComponent(x5x2)
-                                .addGap(45, 45, 45)
-                                .addComponent(x4x2)
-                                .addGap(45, 45, 45)
-                                .addComponent(x3x2)
-                                .addGap(45, 45, 45)
-                                .addComponent(x2x2)
-                                .addGap(45, 45, 45)
-                                .addComponent(x1x2))
-                            .addGroup(panelChargerLayout.createSequentialGroup()
-                                .addComponent(x9x3)
-                                .addGap(45, 45, 45)
-                                .addComponent(x8x3)
-                                .addGap(45, 45, 45)
-                                .addComponent(x7x3)
-                                .addGap(45, 45, 45)
-                                .addComponent(x6x3)
-                                .addGap(45, 45, 45)
-                                .addComponent(x5x3)
-                                .addGap(45, 45, 45)
-                                .addComponent(x4x3)
-                                .addGap(45, 45, 45)
-                                .addComponent(x3x3)
-                                .addGap(45, 45, 45)
-                                .addComponent(x2x3)
-                                .addGap(45, 45, 45)
-                                .addComponent(x1x3))
-                            .addGroup(panelChargerLayout.createSequentialGroup()
-                                .addComponent(x9x4)
-                                .addGap(45, 45, 45)
-                                .addComponent(x8x4)
-                                .addGap(45, 45, 45)
-                                .addComponent(x7x4)
-                                .addGap(45, 45, 45)
-                                .addComponent(x6x4)
-                                .addGap(45, 45, 45)
-                                .addComponent(x5x4)
-                                .addGap(45, 45, 45)
-                                .addComponent(x4x4)
-                                .addGap(45, 45, 45)
-                                .addComponent(x3x4)
-                                .addGap(45, 45, 45)
-                                .addComponent(x2x4)
-                                .addGap(45, 45, 45)
-                                .addComponent(x1x4))
-                            .addGroup(panelChargerLayout.createSequentialGroup()
-                                .addComponent(x9x5)
-                                .addGap(45, 45, 45)
-                                .addComponent(x8x5)
-                                .addGap(45, 45, 45)
-                                .addComponent(x7x5)
-                                .addGap(45, 45, 45)
-                                .addComponent(x6x5)
-                                .addGap(45, 45, 45)
-                                .addComponent(x5x5)
-                                .addGap(45, 45, 45)
-                                .addComponent(x4x5)
-                                .addGap(45, 45, 45)
-                                .addComponent(x3x5)
-                                .addGap(45, 45, 45)
-                                .addComponent(x2x5)
-                                .addGap(45, 45, 45)
-                                .addComponent(x1x5))
-                            .addGroup(panelChargerLayout.createSequentialGroup()
-                                .addComponent(x9x6)
-                                .addGap(45, 45, 45)
-                                .addComponent(x8x6)
-                                .addGap(45, 45, 45)
-                                .addComponent(x7x6)
-                                .addGap(45, 45, 45)
-                                .addComponent(x6x6)
-                                .addGap(45, 45, 45)
-                                .addComponent(x5x6)
-                                .addGap(45, 45, 45)
-                                .addComponent(x4x6)
-                                .addGap(45, 45, 45)
-                                .addComponent(x3x6)
-                                .addGap(45, 45, 45)
-                                .addComponent(x2x6)
-                                .addGap(45, 45, 45)
-                                .addComponent(x1x6))
-                            .addGroup(panelChargerLayout.createSequentialGroup()
-                                .addComponent(x9x7)
-                                .addGap(45, 45, 45)
-                                .addComponent(x8x7)
-                                .addGap(45, 45, 45)
-                                .addComponent(x7x7)
-                                .addGap(45, 45, 45)
-                                .addComponent(x6x7)
-                                .addGap(45, 45, 45)
-                                .addComponent(x5x7)
-                                .addGap(45, 45, 45)
-                                .addComponent(x4x7)
-                                .addGap(45, 45, 45)
-                                .addComponent(x3x7)
-                                .addGap(45, 45, 45)
-                                .addComponent(x2x7)
-                                .addGap(45, 45, 45)
-                                .addComponent(x1x7))))
-                    .addGroup(panelChargerLayout.createSequentialGroup()
-                        .addGap(158, 158, 158)
-                        .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(x9x1)
-                            .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(45, 45, 45)
-                        .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelChargerLayout.createSequentialGroup()
-                                .addComponent(x8x1)
-                                .addGap(45, 45, 45)
-                                .addComponent(x7x1)
-                                .addGap(43, 43, 43)
-                                .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(panelChargerLayout.createSequentialGroup()
-                                        .addComponent(x6x1)
-                                        .addGap(45, 45, 45)
-                                        .addComponent(x5x1))
-                                    .addGroup(panelChargerLayout.createSequentialGroup()
-                                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(43, 43, 43)
-                                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(43, 43, 43)
-                                .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(x4x1)
-                                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(panelChargerLayout.createSequentialGroup()
-                                        .addGap(45, 45, 45)
-                                        .addComponent(x3x1))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelChargerLayout.createSequentialGroup()
-                                        .addGap(43, 43, 43)
-                                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(45, 45, 45)
                                 .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(panelChargerLayout.createSequentialGroup()
-                                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(panelChargerLayout.createSequentialGroup()
-                                        .addComponent(x2x1)
+                                        .addComponent(x7x2)
                                         .addGap(45, 45, 45)
-                                        .addComponent(x1x1))))
+                                        .addComponent(x6x2)
+                                        .addGap(45, 45, 45)
+                                        .addComponent(x5x2)
+                                        .addGap(45, 45, 45)
+                                        .addComponent(x4x2)
+                                        .addGap(45, 45, 45)
+                                        .addComponent(x3x2)
+                                        .addGap(45, 45, 45)
+                                        .addComponent(x2x2))
+                                    .addGroup(panelChargerLayout.createSequentialGroup()
+                                        .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(panelChargerLayout.createSequentialGroup()
+                                                .addGap(0, 0, Short.MAX_VALUE)
+                                                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(panelChargerLayout.createSequentialGroup()
+                                                .addComponent(x7x1)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(x6x1)))
+                                        .addGap(41, 41, 41)
+                                        .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(x5x1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(43, 43, 43)
+                                        .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(x4x1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(43, 43, 43)
+                                        .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(x3x1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(x2x1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addGroup(panelChargerLayout.createSequentialGroup()
-                                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(x9x1)
+                                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(43, 43, 43)
-                                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                                .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(x8x1)
+                                    .addGroup(panelChargerLayout.createSequentialGroup()
+                                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(43, 43, 43)
+                                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(43, 43, 43)
+                        .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(panelChargerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(x1x2)
+                                .addComponent(x1x1, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addComponent(jLabel21)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(textFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(buttonCreate)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(buttonCreerCVS)
                 .addContainerGap())
         );
 
         textFieldName.getAccessibleContext().setAccessibleName("");
 
         panelChargerMain.add(panelCharger, "card2");
+
+        panelCreateMain.setLayout(new java.awt.CardLayout());
+
+        fileChooser.setCurrentDirectory(new java.io.File("F:\\Documents\\NetBeansProjects\\LeGrosDebrouillard\\src\\CSV"));
+        fileChooser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onClickFileChooser(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelCreateLayout = new javax.swing.GroupLayout(panelCreate);
+        panelCreate.setLayout(panelCreateLayout);
+        panelCreateLayout.setHorizontalGroup(
+            panelCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCreateLayout.createSequentialGroup()
+                .addGap(70, 70, 70)
+                .addComponent(fileChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 850, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(96, Short.MAX_VALUE))
+        );
+        panelCreateLayout.setVerticalGroup(
+            panelCreateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCreateLayout.createSequentialGroup()
+                .addGap(105, 105, 105)
+                .addComponent(fileChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 547, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(133, Short.MAX_VALUE))
+        );
+
+        panelCreateMain.add(panelCreate, "card2");
 
         javax.swing.GroupLayout panelLayoutLayout = new javax.swing.GroupLayout(panelLayout);
         panelLayout.setLayout(panelLayoutLayout);
@@ -871,10 +936,15 @@ public class Plateau extends javax.swing.JFrame implements Observer {
                 .addComponent(panelJeuMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(panelLayoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(panelChargerMain, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(panelLayoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelLayoutLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(panelCreateMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         panelLayoutLayout.setVerticalGroup(
             panelLayoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 845, Short.MAX_VALUE)
+            .addGap(0, 824, Short.MAX_VALUE)
             .addGroup(panelLayoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(panelAcceuilMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(panelLayoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -883,6 +953,11 @@ public class Plateau extends javax.swing.JFrame implements Observer {
                     .addComponent(panelJeuMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addGroup(panelLayoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(panelChargerMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(panelLayoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelLayoutLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(panelCreateMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         getContentPane().add(panelLayout, java.awt.BorderLayout.CENTER);
@@ -893,7 +968,7 @@ public class Plateau extends javax.swing.JFrame implements Observer {
     private void onClickBandeauButtonLoad(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onClickBandeauButtonLoad
         this.buttonLoad.setSelected(false);
         panelLayout.removeAll();
-        panelLayout.add(panelChargerMain);
+        panelLayout.add(panelCreateMain);
         panelLayout.repaint();
         panelLayout.revalidate();
     }//GEN-LAST:event_onClickBandeauButtonLoad
@@ -1417,8 +1492,8 @@ public class Plateau extends javax.swing.JFrame implements Observer {
         }        
     }
     
-    private void buttonCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCreateActionPerformed
-        this.buttonCreate.setSelected(false);
+    private void buttonCreerCVSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCreerCVSActionPerformed
+        this.buttonCreerCVS.setSelected(false);
         String name = this.textFieldName.getText().toString() ;
         if(name.equals("")) {
             JOptionPane.showMessageDialog(null,"Un nom de fichier doit être remplit");
@@ -1431,7 +1506,7 @@ public class Plateau extends javax.swing.JFrame implements Observer {
                 this.remplirCSV(name);
             }
         }
-    }//GEN-LAST:event_buttonCreateActionPerformed
+    }//GEN-LAST:event_buttonCreerCVSActionPerformed
 
     private void onClickBandeauButtonPlay(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onClickBandeauButtonPlay
         this.buttonPlay.setSelected(false);
@@ -1460,9 +1535,11 @@ public class Plateau extends javax.swing.JFrame implements Observer {
         System.exit(0);
     }//GEN-LAST:event_onClickBandeauButtonQuit
 
-    private void buttonPlayPauseJeuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPlayPauseJeuActionPerformed
+    private void onClickPlayPauseButton(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onClickPlayPauseButton
         this.buttonPlayPauseJeu.setSelected(false);
         if(!begin) {
+            ImageIcon imagePlay = new ImageIcon("F:\\Documents\\NetBeansProjects\\LeGrosDebrouillard\\src\\Images\\pause.png") ;
+            this.buttonPlayPauseJeu.setIcon(imagePlay);
             begin = true ;
             thread = new Thread(model) ;
             thread.start();
@@ -1470,12 +1547,16 @@ public class Plateau extends javax.swing.JFrame implements Observer {
         }
        
         if(stop) {
+            ImageIcon imagePlay = new ImageIcon("F:\\Documents\\NetBeansProjects\\LeGrosDebrouillard\\src\\Images\\play.png") ;
+            this.buttonPlayPauseJeu.setIcon(imagePlay);
             stop = false ;
             System.out.println(stop);
             model.setPause(true) ;
             return ;
         }
         else {
+            ImageIcon imagePlay = new ImageIcon("F:\\Documents\\NetBeansProjects\\LeGrosDebrouillard\\src\\Images\\pause.png") ;
+            this.buttonPlayPauseJeu.setIcon(imagePlay);
             stop = true ;
             System.out.println(stop);
             
@@ -1486,17 +1567,92 @@ public class Plateau extends javax.swing.JFrame implements Observer {
             
             return ;
         }
-    }//GEN-LAST:event_buttonPlayPauseJeuActionPerformed
+    }//GEN-LAST:event_onClickPlayPauseButton
 
-    private void buttonRetourRapideJeuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRetourRapideJeuActionPerformed
+    private void onClickRetourRapide(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onClickRetourRapide
         this.buttonRetourRapideJeu.setSelected(false);
         this.wait += 200 ;
-    }//GEN-LAST:event_buttonRetourRapideJeuActionPerformed
+    }//GEN-LAST:event_onClickRetourRapide
 
-    private void buttonAvanceRapideJeuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAvanceRapideJeuActionPerformed
+    private void onClickButtonAvanceRapide(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onClickButtonAvanceRapide
         this.buttonAvanceRapideJeu.setSelected(false);
         this.wait -= 200 ;
-    }//GEN-LAST:event_buttonAvanceRapideJeuActionPerformed
+    }//GEN-LAST:event_onClickButtonAvanceRapide
+
+    private void onClickFileChooser(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onClickFileChooser
+       this.path = this.fileChooser.getSelectedFile().getAbsolutePath();
+       String ligne = "Voici le fichier que vous avez choisis : " + this.fileChooser.getSelectedFile().getName() ;
+       JOptionPane.showMessageDialog(null,ligne);
+       recommencerJeu();
+    }//GEN-LAST:event_onClickFileChooser
+
+    private void onClickBandeauButtonCreate(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onClickBandeauButtonCreate
+        this.buttonLoad.setSelected(false);
+        panelLayout.removeAll();
+        panelLayout.add(panelChargerMain);
+        panelLayout.repaint();
+        panelLayout.revalidate();
+    }//GEN-LAST:event_onClickBandeauButtonCreate
+
+    private void recommencerJeu() {
+        this.current.clear();
+        this.best.clear();
+
+        for (Node n : current){
+            Iterator<Edge> it = n.getEdgeIterator();
+            while (it.hasNext()) {
+                it.next();
+                it.remove(); 
+            }
+        }
+
+        for (Node n : best){
+            Iterator<Edge> it = n.getEdgeIterator();
+            while (it.hasNext()) {
+                it.next();
+                it.remove();
+            }
+        }
+        
+        model = new TSPModel_PtiDeb(this);
+        model.clear();
+        
+        try {
+            FileReader fr = new FileReader(path);
+            BufferedReader br = new BufferedReader(fr);
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(",");
+                model.addPoint(Integer.parseInt(values[0]), Integer.parseInt(values[1]), Integer.parseInt(values[2]));
+                System.out.println(line);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        remplirGraph();
+        thread = new Thread(model);
+        model.setPause(true);
+        thread.start();
+        
+        panelLayout.removeAll();
+        panelLayout.add(panelJeuMain);
+        panelLayout.repaint();
+        panelLayout.revalidate();
+        
+        ImageIcon imagePlay = new ImageIcon("F:\\Documents\\NetBeansProjects\\LeGrosDebrouillard\\src\\Images\\play.png") ;
+        this.buttonPlayPauseJeu.setIcon(imagePlay);
+        this.stop = false ;
+    }
+    
+    private void buttonRecommencerJeuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRecommencerJeuActionPerformed
+        this.recommencerJeu();
+    }//GEN-LAST:event_buttonRecommencerJeuActionPerformed
+
+    private void buttonArretJeuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonArretJeuActionPerformed
+        this.best.clear() ;
+        this.current.clear();
+    }//GEN-LAST:event_buttonArretJeuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1534,8 +1690,6 @@ public class Plateau extends javax.swing.JFrame implements Observer {
     }
     
     private void lireFichierCSV() {
-        Graph tmp = new SingleGraph("test") ;
-        
         try {
             FileReader fr = new FileReader(path);
             BufferedReader br = new BufferedReader(fr);
@@ -1605,9 +1759,11 @@ public class Plateau extends javax.swing.JFrame implements Observer {
                     finish();
                     break;
             }
+            
             try {
                 Thread.sleep(wait);
-            } catch (Exception e) {
+            }
+            catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -1641,15 +1797,15 @@ public class Plateau extends javax.swing.JFrame implements Observer {
     private boolean stop = true ;
     TSPModel_PtiDeb model ;
     Thread thread ;
-    private String path = "F:\\Documents\\NetBeansProjects\\LeGrosDebrouillard\\src\\CSV\\Nizaru.csv" ;
+    private String path = "F:\\Documents\\NetBeansProjects\\LeGrosDebrouillard\\src\\CSV\\Default.csv" ;
     private Graph current = new SingleGraph("current");
     private Graph best = new SingleGraph("best");
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bestGraph;
     private javax.swing.JToggleButton buttonArretJeu;
     private javax.swing.JToggleButton buttonAvanceRapideJeu;
-    private javax.swing.JToggleButton buttonCharger;
     private javax.swing.JToggleButton buttonCreate;
+    private javax.swing.JToggleButton buttonCreerCVS;
     private javax.swing.JToggleButton buttonLoad;
     private javax.swing.JToggleButton buttonPlay;
     private javax.swing.JToggleButton buttonPlayPauseJeu;
@@ -1657,6 +1813,7 @@ public class Plateau extends javax.swing.JFrame implements Observer {
     private javax.swing.JToggleButton buttonRecommencerJeu;
     private javax.swing.JToggleButton buttonRetourRapideJeu;
     private javax.swing.JPanel currentGraph;
+    private javax.swing.JFileChooser fileChooser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1671,6 +1828,8 @@ public class Plateau extends javax.swing.JFrame implements Observer {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1685,6 +1844,8 @@ public class Plateau extends javax.swing.JFrame implements Observer {
     private javax.swing.JPanel panelBandeau;
     private javax.swing.JPanel panelCharger;
     private javax.swing.JPanel panelChargerMain;
+    private javax.swing.JPanel panelCreate;
+    private javax.swing.JPanel panelCreateMain;
     private javax.swing.JPanel panelJeu;
     private javax.swing.JPanel panelJeuMain;
     private javax.swing.JPanel panelLayout;
